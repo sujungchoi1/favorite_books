@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+
+</head>
+<body>
+    <div id="container">
+        <div class="left_box">
+            <h1>Registration</h1>
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+                <form action='/register' method='POST' class="registration_form">
+                        {% csrf_token %}
+
+                        <p>First name
+                            <input type="text" name="first_name" id="first_name">
+                        </p>
+
+                        <p>Last Name
+                            <input type="text" name="last_name" id="last_name">
+                        </p>
+
+                        <p>Email
+                            <input type="email" name="email" id="email">
+                        </p>
+
+                        <p>Password
+                            <input type="password" name="password_hash" id="password_hash">
+                        </p>
+
+                        <p>Confirm PW
+                            <input type="password" name="confirm_password" id="confirm_password">
+                        </p>
+
+                        <div class="btn-holder">
+                            <button type='submit'>Register</button>
+                        </div>
+
+                </form>
+
+
+        </div>
+        <div class="right_box">
+            <h1>Login</h1>
+            <form action='/login' method='POST' class="login_form">
+                    {% csrf_token %}
+
+                <p>Email
+                    <input type="text" name="email" id="email">
+                </p>
+
+                <p>Password
+                    <input type="password" name="password" id="password">
+                </p>
+
+                    <div class="btn-holder">
+                        <button type='submit'>Log In</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

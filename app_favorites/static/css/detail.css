@@ -1,0 +1,28 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* outline: 1px solid black; */
+}
+
+#wrapper {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px black solid;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px 0;
+}
+
+#container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* width: 60vw; */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+

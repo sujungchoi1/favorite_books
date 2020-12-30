@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h2>Welcome, Sujung</h2>
+            <h3><a href="/logout">Log Out</a></h3>
+        </div>
+        
+        <div id="container">
+            <div class="left_box">
+
+                <h1>The Silmarillion {{book.title}}</h1>
+                <p>Added by: Frodo Boggins</p>
+                <p>Added on: Sept 22, 2018 @ 1:11pm </p>
+                <p>Last updated on: Dec 31, 2018 @ 1:17pm </p>
+                <p>Description: a history of univserse....</p>
+                
+            </div>
+
+            <div class="right_box">
+                <h1>Users Who Like This Book</h1>
+                <ul>
+                    <li>Frodo Boggins <a href="">Un-Favorite</a></li>
+                    <li>Bilbo Baggins</li>
+                </ul>
+
+                <a href="">Add to Favorites</a>
+            </div>
+    </div>
+</body>
+
+</html>

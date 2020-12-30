@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h2>Welcome, {{ this_user.first_name }}</h2>
+            <h3><a href="/logout">Log Out</a></h3>
+        </div>
+        
+        <div id="container">
+            <div class="left_box">
+                <form action='/processUpdate/{{book.id}}' method='POST' class="update_form">
+                        {% csrf_token %}
+                    
+                    <p>
+                        <textarea name="title" name="title" id="title">
+                            {{book.title}}</textarea>
+                    </p>
+                    
+                    <p>Added by: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</p>
+                    <p>Added on: {{book.created_at}} </p>
+                    <p>Last updated on: {{book.updated_at}}</p>
+
+                    <p class="desc">Description</p>
+                        <textarea name="description" name="description" rows="4" cols="50">
+                            {{book.desc}}</textarea>
+
+                    <div class="btn-holder">
+                        <button type='submit'>Update</button>
+                    </div>
+                    
+                </form>
+                <button><a href="/{{book.id}}/delete">Delete</a></button>
+
+            </div>
+            <div class="right_box">
+                <h1>Users Who Like This Book</h1>
+                <ul>
+                    <li>Frodo Boggins <a href="">Un-Favorite</a></li>
+                    <li>Bilbo Baggins</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+</body>
+
+</html>

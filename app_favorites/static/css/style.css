@@ -1,0 +1,32 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* outline: 1px solid black; */
+}
+
+#container {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 80vw;
+    margin: 20px auto;
+}
+
+.messages {
+    margin-bottom: 20px;
+    color: rgb(15, 97, 117);
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.left_box {
+    margin-right: 50px;
+}
+
+.btn-holder{
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

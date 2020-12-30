@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h2>Welcome, {{ this_user.first_name }}</h2>
+
+            <!-- <form action='/logout' method='post'>
+                {% csrf_token %}
+                <input type='submit' value='Log Out' class="logout">
+            </form> -->
+
+            <a href="/logout">Log Out</a>
+
+        </div>
+        
+        <div id="container">
+            <div class="left_box">
+
+                <h1>Add a Favorite Book</h1>
+                <form action='/processNewBook' method='POST' class="add_form">
+                        {% csrf_token %}
+
+                    {% if messages %}
+                        <ul class="messages">    
+                            {% for message in messages %}    
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                        <p>Title
+                            <!-- django: Only shows the first word of the title without ""  -->
+                            <input type="text" name="title" id="title">
+                        </p>
+
+                        <p>Description
+                            <textarea name="description" id="description" rows="4" cols="50"></textarea>
+                        </p>
+                        <div class="btn-holder">
+                            <button type='submit'>Add</button>
+                        </div>
+
+                </form>
+            </div>
+            <div class="right_box">
+                <h1>All Books</h1>
+                {% for book in books %}
+                <p class="book_desc">
+                    <!-- if the logged in user is the same as the person uploaded the book  -->
+                    {% if request.session.userid == book.uploaded_by.id %}
+                    <p><a href="/books/update/{{book.id}}">{{ book.title }}</a></p>
+                    {% endif %}
+                    <!-- if the logged in user is NOT the person who uploaded the book  -->
+                    {% if request.session.userid != book.uploaded_by.id %}
+                    <p><a href="/books/detail/{{book.id}}">{{ book.title }}</a></p>
+                    {% endif %}
+                    <!-- name changes if logged in by another used 
+                    Should diplay uploaded user -->
+                    <p>added by {{book.uploaded_by.first_name}}
+                        {{book.uploaded_by.last_name}}</p>
+                    {% if request.session.userid == book.uploaded_by.id %}
+                    <p>This is one of your favorite books</p>
+                    {% endif %}
+                </p>
+
+                {% endfor %}
+                </p>
+
+                <!-- FIND A WAY TO CREATE ADD TO FAVORITES LINK  -->
+            </div>
+        </div>
+</body>
+
+</html>
