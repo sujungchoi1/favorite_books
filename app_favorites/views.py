@@ -88,18 +88,15 @@ def processNewBook(request):
             desc = request.POST['description'],
             uploaded_by = User.objects.get(id=request.session['userid']),
         )
-        # from Sadie
-        # new_book.users_who_like.add(User.objects.get(id=request.session['userid']))
         
         # user.liked_books is a list
         user = User.objects.get(id=request.session['userid'])
         user.liked_books.add(new_book.id)
         
-        # save not needed - only for updating fields
         print(request.POST)
         print("**", user.liked_books.last().title)
-        #doesn't work - printing 'None'
         
+        # Works on shell
         # book9 = Book.objects.get(id=9)
         # liked_book_9 = book9.users_who_like.all()
         # for user in liked_book_9:
@@ -140,17 +137,8 @@ def delete(request, book_id):
     print("** Deleting the book")
     return redirect('/books')
 
-# def logout(request):
-#     # Have the logout link clear the session
-#     del request.session['userid']
-#     # request.session.clear()
-#     #requeset.session.pop('userid')
-#     print("***you're logged out")
-#     return redirect('/')
-
 def logout(request):
     request.session.clear()
-    
     print("**Logged Out!")
     messages.success(request, "You have been logged out")
     return redirect('/')
